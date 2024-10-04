@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-card">
+      <div class="slds-card__header slds-grid slds-grid_align-spread slds-m-bottom_medium">
+        <h1 class="slds-text-heading_medium slds-truncate slds-text-title_bold slds-text-color_success">Weather App</h1>
+      </div>
+      <div class="slds-card__body">
+        <div class="slds-grid slds-wrap">
+          <div class="slds-col slds-size_8-of-12">
+            <lightning-input label="Enter Location" value={location} onchange={handleLocationChange} placeholder="e.g. Ranchi, Kolkata" variant="label-hidden" class="slds-size_1-of-1 slds-p-left_small"></lightning-input>
+          </div>
+          <div class="slds-col slds-size_4-of-12">
+            <lightning-button label="Get Weather" variant="brand" onclick={handleGetWeather} class="slds-m-top_small slds-m-left_small slds-size_1-of-1"></lightning-button>
+          </div>
+        </div>
+      </div>
+      <div class="slds-grid slds-wrap slds-m-top_large">
+        <template if:true={currentWeather}>
+          <div class="slds-col slds-size_1-of-1 slds-p-left_small">
+            <h2><B>Current Weather Report</B></h2></br>
+            <div class="slds-grid slds-wrap">
+              <div class="slds-col slds-size_1-of-2"><strong>Location Name:</strong> {city}</div>              
+              <div class="slds-col slds-size_1-of-2"><strong>Weather Condition:</strong> {description}</div>
+              <div class="slds-col slds-size_1-of-2"><strong>Current Temperature:</strong> {currentTemperature}&#8451;</div>
+              <div class="slds-col slds-size_1-of-2"><strong>Humidity:</strong> {humidity}%</div>
+              <div class="slds-col slds-size_1-of-2"><strong>Wind Speed:</strong> {speed}</div>
+            </div>
+          </div>
+        </template>
+        <template if:false={currentWeather}>
+          <div class="slds-col slds-size_1-of-1">
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-m-vertical_medium" role="alert">
+              <span class="slds-assistive-text">Info</span>
+              No current weather data available.
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
